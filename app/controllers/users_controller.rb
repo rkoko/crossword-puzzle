@@ -1,8 +1,10 @@
-
 class UsersController < ApplicationController
 
-  def new
-    
+  def index
+    @users = User.all
+    respond_to do |format|
+      format.json { render json: @users}
+    end
   end
 
   def create
@@ -10,4 +12,9 @@ class UsersController < ApplicationController
 
   def show
   end
+
+  def destroy
+  end
+
+
 end

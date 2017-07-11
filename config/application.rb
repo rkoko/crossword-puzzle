@@ -27,5 +27,13 @@ module CrosswordPuzzle
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    
+    #CORS thing
+    # config.action_dispatch.default_headers = {
+    #   'Access-Control-Allow-Origin' => 'http://localhost:8080'
+    #   'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
+    # }
+
+
   end
 end
