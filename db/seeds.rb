@@ -5,3 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+data = RestClient.get("http://jservice.io/api/clues.json")
+
+parsed_data = JSON.parse(data)
+
+single_words = parsed_data.select{ |clue| clue["answer"].split(" ").length < 2 }
+
+easy_words = single_words.select do |word|
+  if word["value"]
+    word["value"] < 400
+  end
+end
+
+easy_words.each{ |word| Word.create(answer: word["answer"], clue: word["question"], value: word["value"]) }
