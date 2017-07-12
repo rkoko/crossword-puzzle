@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-     json: @users
+     render json: @users
   end
 
   def create
@@ -15,10 +15,6 @@ class UsersController < ApplicationController
   def destroy
   end
 
-  def home
-    @cw = Crossword.make("a")
-    render json: @cw
-  end
 
   def find_user
     User.find_by(username: params[:username])

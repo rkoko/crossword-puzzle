@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   resources :words, only: [:index, :show]
 
   post '/login', to: 'users#find_user'
-  get '/home', to: 'users#home'
+  get '/home', to: 'words#home'
 end

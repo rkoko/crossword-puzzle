@@ -5,10 +5,12 @@ class Crossword < ApplicationRecord
   has_many :words, through: :crossword_words
 
   def self.make(letter)
-    Word.all.select{|word| word.answer.start_with?(letter)}
+    all = Word.all.select{|word| word.answer.start_with?(letter)}
+    two = []
+    all.uniq{|w| w["answer"]}
+    two.push(all[0])
+    two.push(all[1])
+    return two
   end
-
-
-
 
 end
