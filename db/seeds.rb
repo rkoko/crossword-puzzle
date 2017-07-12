@@ -13,6 +13,7 @@ offset = 0
   d = RestClient.get("http://jservice.io/api/clues.json?offset=#{offset}")
   parsed = JSON.parse(d)
   parsed.each do |object|
+
     data.push(object)
   end
   offset += parsed.length
@@ -26,5 +27,6 @@ easy_words = single_words.select do |word|
     word["value"] < 400 && word["answer"].length === 5
   end
 end
+
 
 easy_words.each{ |word| Word.create(answer: word["answer"], clue: word["question"], value: word["value"]) }
