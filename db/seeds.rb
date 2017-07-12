@@ -6,11 +6,20 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-data = RestClient.get("http://jservice.io/api/clues.json")
 
-parsed_data = JSON.parse(data)
+data = []
+offset = 0
+10.times do
+  d = RestClient.get("http://jservice.io/api/clues.json?offset=#{offset}")
+  parsed = JSON.parse(d)
+  parsed.each do |object|
+    data.push(object)
+  end
+  offset += parsed.length
+end
 
-single_words = parsed_data.select{ |clue| clue["answer"].split(" ").length < 2 }
+
+single_words = data.select{ |clue| clue["answer"].split(" ").length < 2 }
 
 easy_words = single_words.select do |word|
   if word["value"]
