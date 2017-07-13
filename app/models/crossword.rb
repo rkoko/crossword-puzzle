@@ -23,18 +23,7 @@ class Crossword < ApplicationRecord
       else
         selector = rand(0..range)
       end
-
-
-    # all.each do |w|
-    #   if two.length === 1 && w["answer"] && two[0]["answer"] != w["answer"]
-    #     two.push(w)
-    #   elsif w["answer"] && two.length === 0
-    #     two.push(w)
-    #   elsif two.length === 2
-    #     return two
-    #   end
-    # end
-  end
-  return two
- end
+    end
+    return two
+   end
 end
