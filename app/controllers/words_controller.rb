@@ -10,14 +10,17 @@ class WordsController < ApplicationController
   def home
     alpha = ("a".."z").to_a
     selector = rand(0..25)
-    while true
-      if Crossword.make(alpha[selector]).length == 0
-         selector = rand(0..25)
-      else
-        @cw = Crossword.make(alpha[selector])
-        break
-      end
-    end
+    @cw = Crossword.make("r")
+    # if Crossword.make(alpha[selector]).empty?
+    #   selector = rand(0..13)
+    #   @cw = Crossword.make(alpha[selector])
+    # # elsif Crossword.make(alpha[selector]).empty?
+    #   # selector = rand(0..6)
+    # elsif Crossword.make(alpha[selector]).empty?
+    #   @cw = Crossword.make("r")
+    # else
+    #   @cw = Crossword.make(alpha[selector])
+    # end
     render json: @cw
   end
 
