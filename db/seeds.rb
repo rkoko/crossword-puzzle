@@ -9,8 +9,8 @@
 
 data = []
 offset = 0
-30.times do
-  d = RestClient.get("http://jservice.io/api/clues.json?offset=#{offset}")
+1000.times do
+  d = RestClient.get("http://jservice.io/api/clues.json?offset=#{offset}&value=400")
   parsed = JSON.parse(d)
   parsed.each do |object|
 
@@ -24,7 +24,7 @@ single_words = data.select{ |clue| clue["answer"].split(" ").length < 2 }
 
 easy_words = single_words.select do |word|
   if word["value"]
-    word["value"] < 400 && word["answer"].length === 5
+    word["answer"].length === 5
   end
 end
 
